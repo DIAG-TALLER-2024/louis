@@ -4,6 +4,14 @@ Un ejemplo de un bot tributario que responde dudas basándose en la [Ley 824](ht
 
 Esta es una prueba de concepto de RAG para el Taller de desarrollo de una aplicación con IA generativa del [Diplomado en Inteligencia Artificial Generativa](https://educacioncontinua.uc.cl/programas/diplomado-en-inteligencia-artificial-generativa/) de la PUC.
 
+## Stack
+
+- [Flask](https://flask.palletsprojects.com/en/stable/) para disponibilizar un chat de preguntas/respuesta mediante API.
+- [OpenAI API](https://platform.openai.com/) para la interacción con las personas que usan la aplicación.
+- [Chroma DB](https://www.trychroma.com/) como knowledge base (a la cual le pasamos un PDF con la Ley de Impuesto a la Renta).
+
+TODO: este [POC](https://en.wikipedia.org/wiki/Proof_of_concept) no persiste el historial en una base de datos (por ahora). Simplemente utiliza memoria, así que si reinicias el servidor, se pierde la conversación 😓
+
 ## Instrucciones para desarrollar localmente
 
 ### Instalación
@@ -43,6 +51,12 @@ Una vez ya lo instalaste, recuerda activar el Virtual Env:
 source venv/bin/activate
 ```
 
+Y luego crea la base de conocimientos de Chroma con el siguiente comando (solo basta con hacerlo una vez):
+
+```sh
+python documents.py
+```
+
 Y luego ya puedes ejecutar el proyecto localmente con
 
 ```sh
@@ -51,7 +65,13 @@ flask run --debug
 
 ## Probar el bot
 
-En Postman, puedes hacer un POST a `http://127.0.0.1:5000/chat`, enviando como JSON lo siguiente:
+Ejecutar:
+
+```sh
+flask run --debug
+```
+
+Luego, en [Postman](https://www.postman.com/), puedes hacer un POST a `http://127.0.0.1:5000/chat`, enviando como JSON lo siguiente:
 
 ```json
 {
