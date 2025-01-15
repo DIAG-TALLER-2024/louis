@@ -11,8 +11,6 @@ history = []
 def index():
     question = request.json['question']
 
-    print(history)
-
     response = answer(question, history)
 
     history.append({ "role": "user", "content": question })
